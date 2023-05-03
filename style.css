@@ -1,0 +1,36 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+/* COLOR VARIABLES */
+:root {
+    --orange: #FDA214;
+    --medium-grey: #BCCED9;
+    --medium-blue: #304859;
+    --dark-blue: #152938;
+    --light-grey: #F2F2F2;
+    --very-light-grey: #FCFCFC;
+    --soft-sea-blue: #7191A5;
+    --medium-sea-blue: #6395B8;
+
+}
+
+/* DEFAULT RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h3,
+h3,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* SMOOTH SCROLLING */
+html:focus-within {
+    scroll-behavior: smooth;
+}
