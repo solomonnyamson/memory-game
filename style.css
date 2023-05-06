@@ -48,10 +48,6 @@ body {
   transition: 0.3s ease-in;
 }
 
-.wrapper.game-start {
-  display: none;
-}
-
 .game-board {
   background-color: var(--very-light-grey);
   width: 100%;
@@ -176,6 +172,11 @@ body {
   margin-bottom: auto;
 }
 
+.number-card.c6x6 {
+  gap: 0.57rem;
+  grid-template-columns: repeat(6, minmax(0, 2.93rem));
+}
+
 .number-card li {
   list-style: none;
   margin: 0;
@@ -191,6 +192,12 @@ body {
   background-color: var(--medium-grey);
 }
 
+.number-card.c6x6 li {
+  height: 2.93rem;
+  width: 2.93rem;
+  font-size: 1.5rem;
+}
+
 .bottom-timer-moves {
   margin-top: auto;
   display: flex;
@@ -199,7 +206,7 @@ body {
 }
 
 .bottom-timer-moves > * {
-  /* height: 4.375rem; */
+  height: 4.375rem;
   padding: 0.625rem 2.0625rem;
   width: 9.43rem;
   background-color: #dfe7ec;
@@ -219,4 +226,38 @@ body {
   font-size: 2rem;
   font-weight: bold;
   color: #304859;
+}
+
+.bottom-player-moves {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom-player-moves > * {
+  height: 4.375rem;
+  padding: 0.625rem 0;
+  width: 4rem;
+  background-color: #dfe7ec;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  border-radius: 0.312rem;
+}
+
+.bottom-player-moves > * .title {
+  font-size: 0.9375rem;
+  font-weight: bold;
+  color: #7191a5;
+}
+
+.bottom-player-moves > * .detail {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #304859;
+}
+
+.hide {
+  display: none;
 }
