@@ -18,7 +18,7 @@
   </head>
   <body>
     <!-- Game setup start -->
-    <section class="wrapper game-start">
+    <section class="wrapper">
       <h1 class="game-title">memory</h1>
       <div class="game-board">
         <div class="game-board__section theme">
@@ -29,34 +29,35 @@
               type="radio"
               name="theme"
               id="numbers"
+              value="numbers"
               checked
             />
             <label class="theme__label" for="numbers" name="theme">
               Numbers
             </label>
-            <input type="radio" name="theme" id="icons" />
+            <input type="radio" name="theme" id="icons" value="icons" />
             <label for="icons" name="theme"> Icons </label>
           </div>
         </div>
         <div class="game-board__section">
           <h2 class="game-board__section-title">Number of Players</h2>
           <div class="theme_label">
-            <input type="radio" name="player" id="1" checked/>
+            <input type="radio" name="player" id="1" value="1" checked />
             <label for="1" name="player"> 1 </label>
-            <input type="radio" name="player" id="2" />
+            <input type="radio" name="player" id="2" value="2" />
             <label for="2" name="player"> 2 </label>
-            <input type="radio" name="player" id="3" />
+            <input type="radio" name="player" id="3" value="3" />
             <label for="3" name="player"> 3 </label>
-            <input type="radio" name="player" id="4" />
+            <input type="radio" name="player" id="4" value="4" />
             <label for="4" name="player"> 4 </label>
           </div>
         </div>
         <div class="game-board__section">
           <h2 class="game-board__section-title">Grid Size</h2>
           <div class="theme_label">
-            <input type="radio" name="size" id="4x4" checked/>
+            <input type="radio" name="size" id="4x4" checked value="4x4" />
             <label for="4x4" name="size"> 4x4 </label>
-            <input type="radio" name="size" id="6x6" />
+            <input type="radio" name="size" id="6x6" value="6x6" />
             <label for="6x6" name="size"> 6x6 </label>
           </div>
         </div>
@@ -65,12 +66,12 @@
         </div>
       </div>
     </section>
-<section class="game-start 4x4 hide">
+<section class="game-start hide">
   <div class="game-start__header">
     <div class="title">memory</div>
     <button class="menu_button">Menu</button>
   </div>
-    <div class="number-card 4x4" >
+    <div class="number-card c4x4">
       <li>
         <div class="card">1</div>
       </li>
@@ -120,7 +121,7 @@
         <div class="card">2</div>
       </li>
     </div>
-    <div class="number-card c6x6 hide" >
+    <div class="number-card c6x6 hide">
       <li>
         <div class="card">1</div>
       </li>
@@ -239,6 +240,7 @@
         <p class="detail">39</p>
       </div>
 
+      </div>
       <div class="bottom-player-moves hide">
         <div class="player">
           <p class="title">P1</p>
@@ -255,9 +257,7 @@
         <div class="player">
           <p class="title">P4</p>
           <p class="detail">3</p>
-        </div>
       </div>
-
     </div>
   </section>
 
