@@ -18,7 +18,7 @@
   </head>
   <body>
     <!-- Game setup start -->
-    <div class="wrapper">
+    <section class="wrapper game-start">
       <h1 class="game-title">memory</h1>
       <div class="game-board">
         <div class="game-board__section theme">
@@ -29,6 +29,7 @@
               type="radio"
               name="theme"
               id="numbers"
+              checked
             />
             <label class="theme__label" for="numbers" name="theme">
               Numbers
@@ -40,7 +41,7 @@
         <div class="game-board__section">
           <h2 class="game-board__section-title">Number of Players</h2>
           <div class="theme_label">
-            <input type="radio" name="player" id="1" />
+            <input type="radio" name="player" id="1" checked/>
             <label for="1" name="player"> 1 </label>
             <input type="radio" name="player" id="2" />
             <label for="2" name="player"> 2 </label>
@@ -53,7 +54,7 @@
         <div class="game-board__section">
           <h2 class="game-board__section-title">Grid Size</h2>
           <div class="theme_label">
-            <input type="radio" name="size" id="4x4" />
+            <input type="radio" name="size" id="4x4" checked/>
             <label for="4x4" name="size"> 4x4 </label>
             <input type="radio" name="size" id="6x6" />
             <label for="6x6" name="size"> 6x6 </label>
@@ -63,7 +64,73 @@
           <button class="menu-button">Start Game</button>
         </div>
       </div>
+    </section>
+<section class="game-start 4x4">
+  <div class="game-start__header">
+    <div class="title">memory</div>
+    <button class="menu_button">Menu</button>
+  </div>
+    <div class="number-card 4x4" >
+      <li>
+        <div class="card">1</div>
+      </li>
+      <li>
+        <div class="card">3</div>
+      </li>
+      <li>
+        <div class="card">4</div>
+      </li>
+      <li>
+        <div class="card">1</div>
+      </li>
+      <li>
+        <div class="card">6</div>
+      </li>
+      <li>
+        <div class="card">8</div>
+      </li>
+      <li>
+        <div class="card">3</div>
+      </li>
+      <li>
+        <div class="card">6</div>
+      </li>
+      <li>
+        <div class="card">4</div>
+      </li>
+      <li>
+        <div class="card">8</div>
+      </li>
+      <li>
+        <div class="card">5</div>
+      </li>
+      <li>
+        <div class="card">7</div>
+      </li>
+      <li>
+        <div class="card">2</div>
+      </li>
+      <li>
+        <div class="card">7</div>
+      </li>
+      <li>
+        <div class="card">5</div>
+      </li>
+      <li>
+        <div class="card">2</div>
+      </li>
     </div>
+    <div class="bottom-timer-moves">
+      <div class="timer">
+        <p class="title">Time</p>
+        <p class="detail">1:13</p>
+      </div>
+      <div class="moves">
+        <p class="title">Moves</p>
+        <p class="detail">39</p>
+      </div>
+    </div>
+  </section>
 
     <!-- 
   Number of Players
@@ -116,5 +183,6 @@
     <!-- Solo game time and moves counter end -->
 
     <!-- Game board end -->
+    <script src="index.js"></script>
   </body>
 </html>
