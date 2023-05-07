@@ -1,5 +1,5 @@
 /* FONT */
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
 
 /* COLOR VARIABLES */
 :root {
@@ -37,7 +37,7 @@ html:focus-within {
 
 /* MAIN LAYOUT - MOBILE FIRST VIEW */
 body {
-  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
 .wrapper {
@@ -73,7 +73,7 @@ body {
   gap: 0.6875rem;
 }
 
-.game-board__section input[type="radio"] {
+.game-board__section input[type='radio'] {
   opacity: 0;
   position: fixed;
   width: 0;
@@ -101,11 +101,11 @@ body {
   background-color: var(--medium-sea-blue);
 }
 
-.game-board__section input[type="radio"]:checked + label {
+.game-board__section input[type='radio']:checked + label {
   background-color: var(--medium-blue);
 }
 
-.game-board__section input[type="radio"]:focus + label {
+.game-board__section input[type='radio']:focus + label {
   background-color: var(--medium-blue);
 }
 
@@ -198,14 +198,20 @@ body {
   font-size: 1.5rem;
 }
 
-.bottom-timer-moves {
+
+.footer {
+  margin-top: auto;
+}
+
+.solo {
   margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.125rem;
 }
 
-.bottom-timer-moves > * {
+.solo > * {
   height: 4.375rem;
   padding: 0.625rem 2.0625rem;
   width: 9.43rem;
@@ -216,43 +222,43 @@ body {
   border-radius: 0.312rem;
 }
 
-.bottom-timer-moves > * .title {
+.solo > * .title {
   font-size: 0.9375rem;
   font-weight: bold;
   color: #7191a5;
 }
 
-.bottom-timer-moves > * .detail {
+.solo > * .detail {
   font-size: 2rem;
   font-weight: bold;
   color: #304859;
 }
 
-.bottom-player-moves {
+.multiplayer-scores {
   margin-top: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.125rem;
 }
 
-.bottom-player-moves > * {
+.multiplayer-scores > * {
   height: 4.375rem;
   padding: 0.625rem 0;
-  width: 4rem;
   background-color: #dfe7ec;
   display: grid;
   place-items: center;
   font-weight: bold;
   border-radius: 0.312rem;
+  flex: 1;
 }
 
-.bottom-player-moves > * .title {
+.multiplayer-scores > * .title {
   font-size: 0.9375rem;
   font-weight: bold;
   color: #7191a5;
 }
 
-.bottom-player-moves > * .detail {
+.multiplayer-scores > * .detail {
   font-size: 2rem;
   font-weight: bold;
   color: #304859;
@@ -264,4 +270,27 @@ body {
 
 .show {
   display: block;
+}
+
+.player-one.active,
+.player-two.active,
+.player-three.active,
+.player-four.active {
+  background-color: var(--orange);
+}
+
+.multiplayer-scores > .player-one.active > * {
+  color: var(--very-light-grey);
+}
+
+.multiplayer-scores .player-one.active::before,
+.player-two.active::before,
+.player-three.active::before,
+.player-four.active::before {
+  content: '';
+  width: 1.6rem;
+  height: 1.6rem;
+  clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+  background: var(--orange);
+  margin-top: -2.5rem;
 }
