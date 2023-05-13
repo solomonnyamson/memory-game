@@ -177,8 +177,7 @@ body {
   grid-template-columns: repeat(6, minmax(0, 2.93rem));
 }
 
-.number-card li {
-  list-style: none;
+.card {
   margin: 0;
   padding: 0;
   height: 4.53rem;
@@ -190,12 +189,34 @@ body {
   font-weight: bold;
   color: var(--very-light-grey);
   background-color: var(--medium-grey);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all .7s ease;
 }
 
-.number-card.c6x6 li {
+.number-card.c6x6 .card {
   height: 2.93rem;
   width: 2.93rem;
   font-size: 1.5rem;
+}
+
+
+.card__side{
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.card__back-side {
+  transform: rotateY( 180deg );
+}
+
+
+.card.is-flipped {
+  transform: rotateY(180deg);
 }
 
 
@@ -294,3 +315,4 @@ body {
   background: var(--orange);
   margin-top: -2.5rem;
 }
+

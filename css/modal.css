@@ -1,0 +1,64 @@
+/* COLOR VARIABLES */
+:root {
+  --orange: #fda214;
+  --light-orange: #ffb84a;
+  --medium-grey: #bcced9;
+  --medium-blue: #304859;
+  --dark-blue: #152938;
+  --light-grey: #f2f2f2;
+  --very-light-grey: #fcfcfc;
+  --soft-sea-blue: #7191a5;
+  --medium-sea-blue: #6395b8;
+}
+
+.start-menu {
+  position: relative;
+}
+
+/* MOBILE VIEW MODAL */
+
+.modal-menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  place-items: center;
+  z-index: 5;
+  padding: 0 2rem;
+  background-color: rgba(48,72,89,0.6);
+ transition:  .3s ease-in-out;
+}
+
+.modal-menu .container {
+  height: 17rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  background-color: var(--light-grey);
+  opacity: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 1px 1px 1px 2000px rgba(0, 0, 0, 0.2);
+  
+}
+
+.container > * {
+  width: 100%;
+  border: none;
+  border-radius: 1.625rem;
+  padding: 0.865rem 0;
+  font-size: 1.125rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #dfe7ec;
+  color: var(--medium-blue);
+}
+
+.container > *:hover {
+  background-color: var(--orange);
+  color: var(--very-light-grey);
+}
