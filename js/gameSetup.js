@@ -124,9 +124,22 @@ const game = () => {
       checkPairs();
       if (card.classList.contains('matched')) {
         //  TODO: GENERATE SCORES
+        if (player1Turn) {
+          console.log(1);
+        } else if (player2Turn) {
+          console.log(1);
+        } else if (player3Turn) {
+          console.log(1);
+        } else if (player4Turn) {
+          console.log(1);
+        }
       }
       if (!card.classList.contains('matched')) {
         nextPlayer();
+        playerTurn(player1Turn, player1, player2, player3, player4);
+        playerTurn(player2Turn, player2, player1, player3, player4);
+        playerTurn(player3Turn, player3, player1, player2, player4);
+        playerTurn(player4Turn, player4, player1, player2, player3);
       }
     });
   });
@@ -223,7 +236,59 @@ const playerTurn = (pTurn, p1, p2, p3, p4) => {
 const nextPlayer = () => {
   const numberOfFlippedCards = document.querySelectorAll('.is-flipped').length;
   if (numberOfFlippedCards === 2) {
-    console.log(selectedConfig);
+    if (selectedConfig.player === '2') {
+      player1Turn
+        ? ((player1Turn = false), (player2Turn = true))
+        : ((player1Turn = true), (player2Turn = false));
+    } else if (selectedConfig.player === '3') {
+      if (player1Turn) {
+        player1Turn = false;
+        player2Turn = true;
+        player3Turn = false;
+        return;
+      }
+      if (player2Turn) {
+        player1Turn = false;
+        player2Turn = false;
+        player3Turn = true;
+        return;
+      }
+      if (player3Turn) {
+        player1Turn = true;
+        player2Turn = false;
+        player3Turn = false;
+        return;
+      }
+    } else if (selectedConfig.player === '4') {
+      if (player1Turn) {
+        player1Turn = false;
+        player2Turn = true;
+        player3Turn = false;
+        player4Turn = false;
+        return;
+      }
+      if (player2Turn) {
+        player1Turn = false;
+        player2Turn = false;
+        player3Turn = true;
+        player4Turn = false;
+        return;
+      }
+      if (player3Turn) {
+        player1Turn = false;
+        player2Turn = false;
+        player3Turn = false;
+        player4Turn = true;
+        return;
+      }
+      if (player4Turn) {
+        player1Turn = true;
+        player2Turn = false;
+        player3Turn = false;
+        player4Turn = false;
+        return;
+      }
+    }
   }
 };
 
