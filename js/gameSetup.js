@@ -115,6 +115,10 @@ const generatePlayers = () => {
 let moves = 0;
 let flippedCards = [];
 
+const timeElapsed = document.querySelector('.time-ticker');
+const totalMoves = document.querySelector('.total-moves');
+const movesPlayed = document.querySelector('.moves > .detail');
+
 const game = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -206,7 +210,7 @@ const checkPairs = () => {
 
   if (NumberOfCardsFlipped >= 2) {
     moves++;
-    //  movesPlayed.textContent = moves;
+    movesPlayed.textContent = moves;
     cardsFlipped.forEach((card) => {
       setTimeout(() => {
         card.classList.remove('is-flipped');
@@ -312,6 +316,22 @@ const launchTimeTicker = () => {
     }, 1000);
   }
 };
+
+const stopTimeTicker = () => {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const matchedCards = document.querySelectorAll('.matched').length;
+      if (matchedCards === 16 && selectedConfig.theme === '4x4') {
+        clearInterval(interval);
+        timeElapsed.innerHTML = timeTicker.innerHTML;
+        totalMoves.innerHTML = `${movesPlayed.innerHTML} Moves`;
+      }
+    });
+  });
+};
+
+stopTimeTicker();
 
 
 
