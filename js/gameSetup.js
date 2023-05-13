@@ -119,6 +119,7 @@ const game = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
     card.addEventListener('click', () => {
+      launchTimeTicker();
       card.classList.add('is-flipped');
       flippedCards.push(card);
       checkPairs();
@@ -291,6 +292,28 @@ const nextPlayer = () => {
     }
   }
 };
+
+const timeTicker = document.querySelector('.timer > .detail');
+let interval;
+let min = 0;
+let sec = 1;
+let done = false;
+
+const launchTimeTicker = () => {
+  if (!done) {
+    done = true;
+    interval = setInterval(() => {
+      timeTicker.innerHTML = `${min}:${sec <= 9 ? '0' + sec : sec}`;
+      sec++;
+      if (sec === 60) {
+        min++;
+        sec = 0;
+      }
+    }, 1000);
+  }
+};
+
+
 
 export {
   getUserSelectedConfig,
