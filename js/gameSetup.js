@@ -118,6 +118,9 @@ let flippedCards = [];
 const timeElapsed = document.querySelector('.time-ticker');
 const totalMoves = document.querySelector('.total-moves');
 const movesPlayed = document.querySelector('.moves > .detail');
+const singlePrayerGameOverModal = document.querySelector(
+  '.modal-solo-game-over'
+);
 
 const game = () => {
   const cards = document.querySelectorAll('.card');
@@ -326,6 +329,11 @@ const stopTimeTicker = () => {
         clearInterval(interval);
         timeElapsed.innerHTML = timeTicker.innerHTML;
         totalMoves.innerHTML = `${movesPlayed.innerHTML} Moves`;
+        if (selectedConfig.player === '1') {
+          setTimeout(() => {
+            singlePrayerGameOverModal.classList.remove('hide'), 200;
+          });
+        }
       }
     });
   });

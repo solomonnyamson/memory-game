@@ -79,22 +79,28 @@
     <!-- Modal mobile Menu End-->
 
      <!-- Modal Solo Game Over Start -->
-      <div class="modal-solo-game-over hide">
-        <h3>You did it!</h3>
-        <p>Game over! Here's how you got on...</p>
-        <div class="time-elapsed">
+      <div class="sp-game-over-modal ">
+        <div class="sp-game-over-modal__container">
+        <div class="sp-game-over-modal__header">
+            <h3 class="sp-game-over-modal__title">You did it!</h3>
+        <p class="sp-game-over-modal__para">Game over! Here's how you got on...</p>
+        </div>
+        <div class="sp-game-over-modal__moves">
+          <div class="time-elapsed">
           <p>Time Elapsed</p>
-          <div class="time-ticker"></div>
+          <div class="time-ticker">23:45</div>
         </div>
         <div class="moves-taken">
           <p>Moves Taken</p>
-          <div class="total-moves"></div>
+          <div class="total-moves">34</div>
         </div>
-        <div class="modal-buttons">
+        </div>
+        <div class="sp-game-over-modal__modal-buttons">
           <button id="restart-btn" class="restart" type="button">
             Restart
           </button>
           <button class="new-game" type="button">Setup New Game</button>
+        </div>
         </div>
       </div>
      <!-- Modal Solo Game Over End -->
