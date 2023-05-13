@@ -4,6 +4,8 @@ import {
   generateRandomNumbers,
   generatePlayers,
   game,
+  stopTimeTicker,
+  playerTurn,
 } from './gameSetup.js';
 
 const gameWrapper = document.querySelector('.wrapper');
@@ -16,10 +18,11 @@ startButton.addEventListener('click', () => {
   gameWrapper.classList.add('hide');
   gameStart.classList.remove('hide');
   generateCards();
-
   generateRandomNumbers();
   generatePlayers();
-  game()
+  game();
+  playerTurn();
+  stopTimeTicker();
 });
 
 menuButton.addEventListener('click', () => {

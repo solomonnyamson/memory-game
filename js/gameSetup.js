@@ -118,9 +118,7 @@ let flippedCards = [];
 const timeElapsed = document.querySelector('.time-ticker');
 const totalMoves = document.querySelector('.total-moves');
 const movesPlayed = document.querySelector('.moves > .detail');
-const singlePrayerGameOverModal = document.querySelector(
-  '.modal-solo-game-over'
-);
+const singlePGameOverModal = document.querySelector('.sp-game-over-modal');
 
 const game = () => {
   const cards = document.querySelectorAll('.card');
@@ -325,23 +323,39 @@ const stopTimeTicker = () => {
   cards.forEach((card) => {
     card.addEventListener('click', () => {
       const matchedCards = document.querySelectorAll('.matched').length;
-      if (matchedCards === 16 && selectedConfig.theme === '4x4') {
+      if (matchedCards === 16 && selectedConfig.size === '4x4') {
         clearInterval(interval);
         timeElapsed.innerHTML = timeTicker.innerHTML;
         totalMoves.innerHTML = `${movesPlayed.innerHTML} Moves`;
         if (selectedConfig.player === '1') {
           setTimeout(() => {
-            singlePrayerGameOverModal.classList.remove('hide'), 200;
-          });
+            singlePGameOverModal.style = 'display: grid';
+          }, 200);
+        } else {
+          setTimeout(() => {
+            //Update multiplayer Modal
+            // display it+
+          }, 200);
+        }
+      } else if (matchedCards === 36 && selectedConfig.size === '6x6') {
+        clearInterval(interval);
+        timeElapsed.innerHTML = timeTicker.innerHTML;
+        totalMoves.innerHTML = `${movesPlayed.innerHTML} Moves`;
+
+        if (selectedConfig.player === '1') {
+          setTimeout(() => {
+            singlePGameOverModal.style = 'display: grid';
+          }, 200);
+        } else {
+          setTimeout(() => {
+            //Update multiplayer Modal
+            // display it
+          }, 200);
         }
       }
     });
   });
 };
-
-stopTimeTicker();
-
-
 
 export {
   getUserSelectedConfig,
@@ -349,4 +363,6 @@ export {
   generateRandomNumbers,
   generatePlayers,
   game,
+  stopTimeTicker,
+  playerTurn,
 };
