@@ -139,7 +139,6 @@ const game = () => {
       flippedCards.push(card);
       checkPairs();
       if (card.classList.contains('matched')) {
-        //  TODO: GENERATE SCORES
         if (player1Turn) {
           player1Score.textContent = +player1Score.textContent + 1;
         } else if (player2Turn) {
@@ -160,38 +159,6 @@ const game = () => {
     });
   });
 };
-
-// const checkPairs = () => {
-//   const numberOfFlippedCards = document.querySelectorAll('.is-flipped').length;
-//   const cardsFlipped = document.querySelectorAll('.is-flipped');
-//   if (
-//     selectedConfig.theme === 'numbers' &&
-//     numberOfFlippedCards === 2 &&
-//     flippedCards[0].children[0].innerHTML ===
-//       flippedCards[1].children[0].innerHTML
-//   ) {
-//     if (selectedConfig.theme === 'numbers') {
-//       cardsFlipped.forEach((card) => {
-//         card.classList.add('match');
-//       });
-//     }
-
-//     //TODO: DO ALSO FOR THE ICONS HERE
-
-//     if (numberOfFlippedCards >= 2) {
-//       console.log(true);
-//       //TODO: INCREASE MOVE
-//       moves++;
-//       //TODO: CHANGE MOVES PLAYED TEXT CONTENT TO CURRENT MOVES
-//       cardsFlipped.forEach((card) => {
-//         setTimeout(() => {
-//           card.classList.remove('is-flipped');
-//           flippedCards = [];
-//         }, 600);
-//       });
-//     }
-//   }
-// };
 
 const checkPairs = () => {
   const NumberOfCardsFlipped = document.querySelectorAll('.is-flipped').length;
@@ -336,17 +303,20 @@ const playerFour = document.querySelector('.player4');
 const multiPGameOverModalBody = document.querySelector('.modal__center');
 
 const updateMultiPScoreSheet = () => {
+  // GET THE SCORE OF EACH PLAYER
   let scores = [];
 
+  // DISPLAY PLAYER SCORE DIV BASED ON THE NUMBER OF PLAYERS
   if (selectedConfig.player == '2') {
     playerThree.style = 'display: none';
     playerFour.style = 'display: none';
-    console.log(selectedConfig)
+    console.log(selectedConfig);
   } else if (selectedConfig.player == '3') {
     playerFour.style = 'display: none';
-    console.log('here', selectedConfig)
+    console.log('here', selectedConfig);
   }
 
+  // UPDATE THE TEXT CONTENT TO REFLECT THE PLAYER SCORE
   if (selectedConfig.player !== '1') {
     player1Move.textContent = `${player1Score.textContent} Pairs`;
     player2Move.textContent = `${player2Score.textContent} Pairs`;
@@ -405,9 +375,10 @@ const updateMultiPScoreSheet = () => {
     }
   }
 
-const playersArray = [playerOne, playerTwo, playerThree, playerFour];
+  // SORT THE PLAYER SCORE DIV ACCORDING TO THE HIGHEST SCORE AND REORDER IT TO THE TOP
+  const playersArray = [playerOne, playerTwo, playerThree, playerFour];
 
-const sortedPlayersArray = [];
+  const sortedPlayersArray = [];
 
   playersArray.forEach((player) => {
     if (player.classList.contains('active')) {
@@ -425,9 +396,10 @@ const sortedPlayersArray = [];
 
   sortedPlayersArray.forEach((player) => {
     multiPGameOverModalBody.appendChild(player);
-  })
+  });
 };
 
+// STOP THE TIME TICKER AND DISPLAY THE RELEVANT SCORE SHEET
 const stopTimeTicker = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -467,38 +439,46 @@ const stopTimeTicker = () => {
   });
 };
 
-export {
-  getUserSelectedConfig,
-  generateCards,
-  generateRandomNumbers,
-  generatePlayers,
-  game,
-  stopTimeTicker,
-  playerTurn,
+const restartGame = () => {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.classList.remove('is-flipped');
+    card.classList.remove('matched');
+  });
+
+  player1Turn = true;
+  player2Turn = false;
+  player3Turn = false;
+  player4Turn = false;
+
+  playerOne.classList.remove('active');
+  playerTwo.classList.remove('active');
+  playerThree.classList.remove('active');
+  playerFour.classList.remove('active');
+
+  player1Score.textContent = 0;
+  player2Score.textContent = 0;
+  player3Score.textContent = 0;
+  player4Score.textContent = 0;
+
+  playerTurn(player1Turn, player1, player2, player3, player4);
+
+  moves = 0;
+  movesPlayed.textContent = moves;
+  min = 0;
+  sec = 1;
+  timeTicker.innerHTML = '0:00';
+  clearInterval(interval);
+  done = false;
 };
 
-// const playersArr = [playerOne, playerTwo, playerThree, playerFour];
+const newGame = () => {
+  generateCards();
+  generateRandomNumbers();
+  generatePlayers();
+  game();
+  playerTurn();
+  stopTimeTicker();
+};
 
-// const sortedArray = [];
- 
-// playersArr.forEach((player) => {
-//   if (player.classList.contains('active')) {
-//     let inner = [];
-//     inner.push(player);
-    
-//     let sortedArr = inner.sort((a, b) =>
-//       a.children[1].textContent > b.children[1].textContent ? -1 : 1
-//     );
-//     sortedArray.unshift(...sortedArr)
-//   } else {
-//     sortedArray.push(player)
-//   }
-// })
-
-
-
-// console.log(sortedArray);
-
-//  let sortedArr = [].slice.call(playersArr).sort((a, b) => {
-//    return a.children[1].textContent > b.children[1].textContent;
-//  });
+export { getUserSelectedConfig, newGame, restartGame };
