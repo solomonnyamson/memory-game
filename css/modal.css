@@ -163,7 +163,7 @@ color: #7191a5;
   width: 100%;
   top: 0;
   left: 0;
-  display: grid;
+  display: none;
   place-items: center;
   z-index: 5;
   padding: 0 2rem;
@@ -232,4 +232,19 @@ color: #7191a5;
   flex-direction: column;
   width: 100%;
   gap: 1rem;
+}
+
+.player1.active,
+.player2.active,
+.player3.active,
+.player4.active {
+  background-color: var(--dark-blue);
+  color: var(--light-grey);
+}
+
+.player1.active .moves-p1,
+.player2.active .moves-p2,
+.player3.active .moves-p3,
+.player4.active .moves-p4 {
+  color: var(--light-grey);
 }

@@ -13,6 +13,7 @@ const gameStart = document.querySelector('.game-start');
 const startButton = document.querySelector('.menu-button');
 const menuButton = document.querySelector('.menu');
 const mobileMenuModalWrapper = document.querySelector('.modal-menu');
+
 startButton.addEventListener('click', () => {
   getUserSelectedConfig();
   gameWrapper.classList.add('hide');

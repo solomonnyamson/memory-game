@@ -13,6 +13,7 @@ const getUserSelectedConfig = () => {
       selectedConfig[gameConfig[config].name] = gameConfig[config].value;
     }
   }
+  console.log(selectedConfig);
 };
 
 const generateCards = () => {
@@ -119,6 +120,15 @@ const timeElapsed = document.querySelector('.time-ticker');
 const totalMoves = document.querySelector('.total-moves');
 const movesPlayed = document.querySelector('.moves > .detail');
 const singlePGameOverModal = document.querySelector('.sp-game-over-modal');
+const multiPGameOverModal = document.querySelector('.mp-game-over-modal');
+const player1Move = document.querySelector('.moves-p1');
+const player2Move = document.querySelector('.moves-p2');
+const player3Move = document.querySelector('.moves-p3');
+const player4Move = document.querySelector('.moves-p4');
+const player1Score = document.querySelector('.score-p1');
+const player2Score = document.querySelector('.score-p2');
+const player3Score = document.querySelector('.score-p3');
+const player4Score = document.querySelector('.score-p4');
 
 const game = () => {
   const cards = document.querySelectorAll('.card');
@@ -131,13 +141,13 @@ const game = () => {
       if (card.classList.contains('matched')) {
         //  TODO: GENERATE SCORES
         if (player1Turn) {
-          console.log(1);
+          player1Score.textContent = +player1Score.textContent + 1;
         } else if (player2Turn) {
-          console.log(1);
+          player2Score.textContent = +player2Score.textContent + 1;
         } else if (player3Turn) {
-          console.log(1);
+          player3Score.textContent = +player3Score.textContent + 1;
         } else if (player4Turn) {
-          console.log(1);
+          player4Score.textContent = +player4Score.textContent + 1;
         }
       }
       if (!card.classList.contains('matched')) {
@@ -318,6 +328,74 @@ const launchTimeTicker = () => {
   }
 };
 
+const winner = document.querySelector('#winner');
+const playerOne = document.querySelector('.player1');
+const playerTwo = document.querySelector('.player2');
+const playerThree = document.querySelector('.player3');
+const playerFour = document.querySelector('.player4');
+
+const updateMultiPScoreSheet = () => {
+  let scores = [];
+  console.log(scores);
+  if (selectedConfig.player !== '1') {
+    player1Move.textContent = `${player1Score.textContent} Pairs`;
+    player2Move.textContent = `${player2Score.textContent} Pairs`;
+    player3Move.textContent = `${player3Score.textContent} Pairs`;
+    player4Move.textContent = `${player4Score.textContent} Pairs`;
+
+    scores.push(player1Score.textContent);
+    scores.push(player2Score.textContent);
+    scores.push(player3Score.textContent);
+    scores.push(player4Score.textContent);
+
+    const maxScore = Math.max(...scores);
+
+    const tieOrNot =
+      scores.filter((score) => score == maxScore).length > 1 ? 'Tie' : 'No Tie';
+
+    if (tieOrNot === 'Tie') {
+      winner.textContent = "It's a tie!";
+      if (maxScore == player1Score.textContent) {
+        playerOne.classList.add('active');
+        playerOne.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player2Score.textContent) {
+        playerTwo.classList.add('active');
+        playerTwo.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player3Score.textContent) {
+        playerThree.classList.add('active');
+        playerThree.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player4Score.textContent) {
+        playerFour.classList.add('active');
+        playerFour.children[0].innerHTML += ' (Winner!)';
+      }
+    } else {
+      if (maxScore == player1Score.textContent) {
+        winner.textContent = 'Player 1 Wins!';
+        playerOne.classList.add('active');
+        playerOne.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player2Score.textContent) {
+        winner.textContent = 'Player 2 Wins!';
+        playerTwo.classList.add('active');
+        playerTwo.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player3Score.textContent) {
+        winner.textContent = 'Player 3 Wins!';
+        playerThree.classList.add('active');
+        playerThree.children[0].innerHTML += ' (Winner!)';
+      }
+      if (maxScore == player4Score.textContent) {
+        winner.textContent = 'Player 4 Wins!';
+        playerFour.classList.add('active');
+        playerFour.children[0].innerHTML += ' (Winner!)';
+      }
+    }
+  }
+};
+
 const stopTimeTicker = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -333,8 +411,8 @@ const stopTimeTicker = () => {
           }, 200);
         } else {
           setTimeout(() => {
-            //Update multiplayer Modal
-            // display it+
+            updateMultiPScoreSheet();
+            multiPGameOverModal.style = 'display: grid';
           }, 200);
         }
       } else if (matchedCards === 36 && selectedConfig.size === '6x6') {
@@ -348,8 +426,8 @@ const stopTimeTicker = () => {
           }, 200);
         } else {
           setTimeout(() => {
-            //Update multiplayer Modal
-            // display it
+            updateMultiPScoreSheet();
+            multiPGameOverModal.style = 'display: grid';
           }, 200);
         }
       }
