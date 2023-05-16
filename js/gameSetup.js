@@ -333,10 +333,20 @@ const playerOne = document.querySelector('.player1');
 const playerTwo = document.querySelector('.player2');
 const playerThree = document.querySelector('.player3');
 const playerFour = document.querySelector('.player4');
+const multiPGameOverModalBody = document.querySelector('.modal__center');
 
 const updateMultiPScoreSheet = () => {
   let scores = [];
-  console.log(scores);
+
+  if (selectedConfig.player == '2') {
+    playerThree.style = 'display: none';
+    playerFour.style = 'display: none';
+    console.log(selectedConfig)
+  } else if (selectedConfig.player == '3') {
+    playerFour.style = 'display: none';
+    console.log('here', selectedConfig)
+  }
+
   if (selectedConfig.player !== '1') {
     player1Move.textContent = `${player1Score.textContent} Pairs`;
     player2Move.textContent = `${player2Score.textContent} Pairs`;
@@ -394,6 +404,28 @@ const updateMultiPScoreSheet = () => {
       }
     }
   }
+
+const playersArray = [playerOne, playerTwo, playerThree, playerFour];
+
+const sortedPlayersArray = [];
+
+  playersArray.forEach((player) => {
+    if (player.classList.contains('active')) {
+      let innerArray = [];
+      innerArray.push(player);
+
+      let initialSort = innerArray.sort((a, b) =>
+        a.children[1].textContent > b.children[1].textContent ? -1 : 1
+      );
+      sortedPlayersArray.unshift(...initialSort);
+    } else {
+      sortedPlayersArray.push(player);
+    }
+  });
+
+  sortedPlayersArray.forEach((player) => {
+    multiPGameOverModalBody.appendChild(player);
+  })
 };
 
 const stopTimeTicker = () => {
@@ -444,3 +476,29 @@ export {
   stopTimeTicker,
   playerTurn,
 };
+
+// const playersArr = [playerOne, playerTwo, playerThree, playerFour];
+
+// const sortedArray = [];
+ 
+// playersArr.forEach((player) => {
+//   if (player.classList.contains('active')) {
+//     let inner = [];
+//     inner.push(player);
+    
+//     let sortedArr = inner.sort((a, b) =>
+//       a.children[1].textContent > b.children[1].textContent ? -1 : 1
+//     );
+//     sortedArray.unshift(...sortedArr)
+//   } else {
+//     sortedArray.push(player)
+//   }
+// })
+
+
+
+// console.log(sortedArray);
+
+//  let sortedArr = [].slice.call(playersArr).sort((a, b) => {
+//    return a.children[1].textContent > b.children[1].textContent;
+//  });
