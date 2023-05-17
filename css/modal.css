@@ -63,6 +63,9 @@
   color: var(--very-light-grey);
 }
 
+/* SINGLE PLAYER GAME OVER MODAL */
+
+/* TODO: DELETE THIS CODE AFTER FINAL REFACTORING */
 .sp-game-over-modal {
   position: absolute;
   height: 100%;
@@ -75,6 +78,7 @@
   padding: 0 2rem;
   background-color: rgba(48,72,89,0.6);
  transition:  .3s ease-in-out;
+
 }
 
 .sp-game-over-modal__container {
@@ -163,9 +167,9 @@ color: #7191a5;
   width: 100%;
   top: 0;
   left: 0;
-  display: none;
+  display: grid;
   place-items: center;
-  z-index: 5;
+  z-index: 0;
   padding: 0 2rem;
   background-color: rgba(48,72,89,0.6);
  transition:  .3s ease-in-out;
@@ -248,3 +252,78 @@ color: #7191a5;
 .player4.active .moves-p4 {
   color: var(--light-grey);
 }
+
+/* RESPONSIVE DESIGN - TABLET VIEW */
+@media screen and (min-width: 45em) {
+/* SINGLE PLAYER GAME OVER MODAL */
+.sp-game-over-modal {
+  padding: 0 3.562rem;
+}
+
+.sp-game-over-modal__container {
+  padding: 3.562rem;
+}
+  .sp-game-over-modal__title {
+    font-size: 3rem;
+  }
+  .sp-game-over-modal__para {
+    font-size: 1.125rem;
+  }
+
+  .time-elapsed, .moves-taken{
+    font-size: 1.125rem;
+    padding: 1.125rem 2rem;
+  }
+
+ .time-ticker, .total-moves {
+    font-size: 2rem;
+  }
+
+  .moves-taken {
+    margin-top: 1rem;
+  }
+
+  .sp-game-over-modal__modal-buttons {
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.sp-game-over-modal__modal-buttons button {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* MULTI PLAYER SCORE SHEET MODAL */
+.modal {
+  padding: 0 3.562rem;
+}
+
+.modal__container {
+   padding: 3.562rem;
+}
+
+.modal__header-title {
+  font-size: 3rem;
+}
+
+.modal__header-para {
+  font-size: 1.125rem;
+}
+
+.modal__center-item {
+   padding: 1.125rem 2rem;
+   font-size: 1.125rem;
+}
+
+.modal__center-item div {
+    font-size: 2rem;
+}
+
+.modal__footer {
+  flex-direction: row;
+  gap: 1rem;
+}
+}
+
+/* RESPONSIVE DESIGN - DESKTOP VIEW */
+@media screen and (min-width: 70em) {}

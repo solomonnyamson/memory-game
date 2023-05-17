@@ -327,3 +327,11 @@ body {
   background: var(--orange);
   margin-top: -2.5rem;
 }
+
+/* RESPONSIVE DESIGN - TABLET VIEW */
+@media screen and (min-width: 45em) {
+  
+}
+
+/* RESPONSIVE DESIGN - DESKTOP VIEW */
+@media screen and (min-width: 70em) {}
