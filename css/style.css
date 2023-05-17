@@ -43,10 +43,15 @@ body {
 
 .wrapper {
   background-color: var(--dark-blue);
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 1.5rem;
-  padding-top: 5rem;
   transition: 0.3s ease-in;
+  display: grid;
+  place-items: center;
+}
+
+.wrapper__container {
+  width: 100%;
 }
 
 .game-board {
@@ -136,9 +141,10 @@ body {
 
 .game-start {
   padding: 2rem;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .game-start__header {
@@ -146,7 +152,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5rem;
 }
 
 .game-start__header > .title {
@@ -164,13 +169,16 @@ body {
   border-radius: 1.625rem;
 }
 
+.game-start__body {
+  margin: auto;
+}
+
 .number-card {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 4.53rem));
   gap: 0.768rem;
   align-items: center;
   justify-content: center;
-  margin-bottom: auto;
 }
 
 .number-card.c6x6 {
@@ -192,7 +200,11 @@ body {
   background-color: var(--medium-grey);
   position: relative;
   transform-style: preserve-3d;
-  transition: all .7s ease;
+  transition: all 0.7s ease;
+}
+
+.card:hover {
+  background-color: var(--dark-blue);
 }
 
 .number-card.c6x6 .card {
@@ -201,8 +213,7 @@ body {
   font-size: 1.5rem;
 }
 
-
-.card__side{
+.card__side {
   display: grid;
   place-items: center;
   height: 100%;
@@ -212,9 +223,8 @@ body {
 }
 
 .card__back-side {
-  transform: rotateY( 180deg );
+  transform: rotateY(180deg);
 }
-
 
 .card.is-flipped {
   transform: rotateY(180deg);
@@ -225,13 +235,7 @@ body {
   background-color: var(--orange);
 }
 
-
-.footer {
-  margin-top: auto;
-}
-
 .solo {
-  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -262,7 +266,6 @@ body {
 }
 
 .multiplayer-scores {
-  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 1.125rem;
@@ -306,7 +309,10 @@ body {
   background-color: var(--orange);
 }
 
-.multiplayer-scores > .player-one.active > * {
+.multiplayer-scores > .player-one.active > *,
+.player-two.active > *,
+.player-three.active > *,
+.player-four.active > * {
   color: var(--very-light-grey);
 }
 
@@ -321,4 +327,3 @@ body {
   background: var(--orange);
   margin-top: -2.5rem;
 }
-
