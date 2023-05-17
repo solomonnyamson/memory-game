@@ -330,8 +330,33 @@ body {
 
 /* RESPONSIVE DESIGN - TABLET VIEW */
 @media screen and (min-width: 45em) {
-  
+  .wrapper {
+    padding: 0 3.562rem;
+  }
+
+  .game-title {
+    font-size: 2.5rem;
+  }
+
+  .game-board__section-title {
+  font-size: 1.25rem;
+}
+
+.game-board__section label {
+  font-size: 1.625rem;
+}
+
+.menu-button{
+  font-size: 2rem;
+  border-radius: 2.187rem;
+}
+
 }
 
 /* RESPONSIVE DESIGN - DESKTOP VIEW */
-@media screen and (min-width: 70em) {}
+@media screen and (min-width: 70em) {
+  /* GAME BOARD */
+  .wrapper {
+    padding: 0 24.56rem;
+  }
+}
