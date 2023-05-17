@@ -38,11 +38,12 @@ html:focus-within {
 /* MAIN LAYOUT - MOBILE FIRST VIEW */
 body {
   font-family: 'Atkinson Hyperlegible', sans-serif;
+  height: 100vh;
 }
 
 .wrapper {
   background-color: var(--dark-blue);
-  min-height: 100vh;
+  height: 100vh;
   padding: 0 1.5rem;
   padding-top: 5rem;
   transition: 0.3s ease-in;

@@ -13,7 +13,6 @@ const getUserSelectedConfig = () => {
       selectedConfig[gameConfig[config].name] = gameConfig[config].value;
     }
   }
-  console.log(selectedConfig);
 };
 
 const generateCards = () => {
@@ -472,6 +471,23 @@ const restartGame = () => {
   done = false;
 };
 
+// RESET GAME BOARD USER SELECTIONS
+const resetUserSelection = () => {
+  removeCards();
+
+  // RESET THE RADIO BUTTONS TO DEFAULT
+  for (let config in gameConfig) {
+    const setting = gameConfig[config];
+    const defaultSettings = ['numbers', '1', '4x4'];
+    setting.checked = false;
+    defaultSettings.forEach((dSetting) => {
+      if (setting.value == dSetting) {
+        setting.checked = true;
+      }
+    });
+  }
+};
+
 const newGame = () => {
   generateCards();
   generateRandomNumbers();
@@ -481,4 +497,4 @@ const newGame = () => {
   stopTimeTicker();
 };
 
-export { getUserSelectedConfig, newGame, restartGame };
+export { getUserSelectedConfig, newGame, restartGame, resetUserSelection };

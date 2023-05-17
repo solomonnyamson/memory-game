@@ -1,4 +1,9 @@
-import { getUserSelectedConfig, newGame, restartGame } from './gameSetup.js';
+import {
+  getUserSelectedConfig,
+  newGame,
+  resetUserSelection,
+  restartGame,
+} from './gameSetup.js';
 
 const gameWrapper = document.querySelector('.wrapper');
 const gameStart = document.querySelector('.game-start');
@@ -59,5 +64,7 @@ const startNewGame = (value) => {
     // RESET TO START NEW GAME
     gameWrapper.classList.remove('hide');
     gameStart.classList.add('hide');
+    restartGame();
+    resetUserSelection();
   }
 };
