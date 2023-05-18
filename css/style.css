@@ -137,6 +137,10 @@ body {
   background-color: var(--light-orange);
 }
 
+.menu_buttons {
+  display: none;
+}
+
 /* GAME START */
 
 .game-start {
@@ -172,6 +176,8 @@ body {
 .game-start__body {
   margin: auto;
 }
+
+/* GAME CARDS */
 
 .number-card {
   display: grid;
@@ -233,6 +239,7 @@ body {
 .card.matched {
   transform: rotateY(180deg);
   background-color: var(--orange);
+  pointer-events: none;
 }
 
 .solo {
@@ -338,6 +345,10 @@ body {
     font-size: 2.5rem;
   }
 
+  .game-start__header > .title {
+  font-size: 2.5rem;
+}
+
   .game-board__section-title {
   font-size: 1.25rem;
 }
@@ -349,6 +360,36 @@ body {
 .menu-button{
   font-size: 2rem;
   border-radius: 2.187rem;
+}
+
+.menu {
+  display: none;
+}
+
+.menu_buttons {
+  display: flex;
+  width: 40%;
+  gap: 1rem;
+}
+
+/* GAME CARDS */
+.number-card {
+  grid-gap: 1rem;
+}
+.card {
+  height: 5.125rem;
+  width: 5.125rem;
+  font-size: 2.75rem;
+}
+
+.number-card.c6x6 {
+  grid-template-columns: repeat(6, minmax(0, 4rem));
+}
+
+.number-card.c6x6 .card {
+  height: 4rem;
+  width: 4rem;
+  font-size: 2rem;
 }
 
 }
