@@ -111,6 +111,8 @@
   color: #7191a5;
 }
 
+/* GAME BOARD BUTTONS */
+
 .sp-game-over-modal__modal-buttons {
   display: flex;
   flex-direction: column;
@@ -128,12 +130,28 @@
   cursor: pointer;
   background-color: #dfe7ec;
   color: var(--medium-blue);
+  transition: .1s ease-in;
 }
 
-.restart:hover, .new-game:hover {
-   background-color: var(--orange);
-  color: var(--very-light-grey);
+.restart {
+  background-color: var(--orange);
+  color: var(--light-grey);
 }
+
+.restart:hover {
+  background-color: var(--light-orange);
+  color: var(--light-grey);
+}
+
+
+.new-game:hover {
+  background-color: var(--medium-sea-blue);
+  color: var(--light-grey);
+}
+
+
+
+
 .sp-game-over-modal__moves {
   width: 100%;
   margin: 2rem 0;

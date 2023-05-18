@@ -203,14 +203,14 @@ body {
   font-size: 2.4rem;
   font-weight: bold;
   color: var(--very-light-grey);
-  background-color: var(--medium-grey);
+  background-color: var(--dark-blue);
   position: relative;
   transform-style: preserve-3d;
   transition: all 0.7s ease;
 }
 
 .card:hover {
-  background-color: var(--dark-blue);
+  background-color: var(--medium-sea-blue);
 }
 
 .number-card.c6x6 .card {
@@ -234,11 +234,13 @@ body {
 
 .card.is-flipped {
   transform: rotateY(180deg);
+  background-color: var(--orange);
+  pointer-events: none;
 }
 
 .card.matched {
   transform: rotateY(180deg);
-  background-color: var(--orange);
+  background-color: var(--medium-grey);
   pointer-events: none;
 }
 
@@ -279,8 +281,8 @@ body {
 }
 
 .multiplayer-scores > * {
-  height: 4.375rem;
-  padding: 0.625rem 0;
+  /* height: 4.375rem; */
+  /* padding: 0.625rem 0; */
   background-color: #dfe7ec;
   display: grid;
   place-items: center;
@@ -301,6 +303,10 @@ body {
   color: #304859;
 }
 
+.desktop.title {
+  display: none;
+}
+
 .hide {
   display: none;
 }
@@ -316,14 +322,12 @@ body {
   background-color: var(--orange);
 }
 
-.multiplayer-scores > .player-one.active > *,
-.player-two.active > *,
-.player-three.active > *,
-.player-four.active > * {
+.player-one.active .multiplayer-scores__item > p,
+.player-one.active .multiplayer-scores__item > div {
   color: var(--very-light-grey);
 }
 
-.multiplayer-scores .player-one.active::before,
+.player-one.active::before,
 .player-two.active::before,
 .player-three.active::before,
 .player-four.active::before {
@@ -346,52 +350,71 @@ body {
   }
 
   .game-start__header > .title {
-  font-size: 2.5rem;
-}
+    font-size: 2.5rem;
+  }
 
   .game-board__section-title {
-  font-size: 1.25rem;
-}
+    font-size: 1.25rem;
+  }
 
-.game-board__section label {
-  font-size: 1.625rem;
-}
+  .game-board__section label {
+    font-size: 1.625rem;
+  }
 
-.menu-button{
-  font-size: 2rem;
-  border-radius: 2.187rem;
-}
+  .menu-button {
+    font-size: 2rem;
+    border-radius: 2.187rem;
+  }
 
-.menu {
-  display: none;
-}
+  .menu {
+    display: none;
+  }
 
-.menu_buttons {
-  display: flex;
-  width: 40%;
-  gap: 1rem;
-}
+  .menu_buttons {
+    display: flex;
+    width: 40%;
+    gap: 1rem;
+  }
 
-/* GAME CARDS */
-.number-card {
-  grid-gap: 1rem;
-}
-.card {
-  height: 5.125rem;
-  width: 5.125rem;
-  font-size: 2.75rem;
-}
+  /* GAME CARDS */
+  .number-card {
+    grid-gap: 1rem;
+  }
+  .card {
+    height: 5.125rem;
+    width: 5.125rem;
+    font-size: 2.75rem;
+  }
 
-.number-card.c6x6 {
-  grid-template-columns: repeat(6, minmax(0, 4rem));
-}
+  .number-card.c6x6 {
+    grid-template-columns: repeat(6, minmax(0, 4rem));
+  }
 
-.number-card.c6x6 .card {
-  height: 4rem;
-  width: 4rem;
-  font-size: 2rem;
-}
+  .number-card.c6x6 .card {
+    height: 4rem;
+    width: 4rem;
+    font-size: 2rem;
+  }
 
+  /* MULTI PLAYER SCORES */
+
+  .multiplayer-scores {
+    gap: 0.6875rem;
+  }
+
+  .multiplayer-scores__item {
+    text-align: left;
+    width: 100%;
+    padding-left: 1rem;
+  }
+
+  .mobile.title {
+    display: none;
+  }
+
+  .desktop.title {
+    display: block;
+  }
 }
 
 /* RESPONSIVE DESIGN - DESKTOP VIEW */
@@ -399,5 +422,30 @@ body {
   /* GAME BOARD */
   .wrapper {
     padding: 0 24.56rem;
+  }
+
+  .game-start {
+    padding: 0rem 10.25rem 0rem 10.25rem;
+  }
+
+  /* MULTI PLAYER SCORES */
+
+  .player-one.active::before,
+  .player-two.active::before,
+  .player-three.active::before,
+  .player-four.active::before {
+    margin-top: -1.5rem;
+  }
+
+  .multiplayer-scores {
+    gap: 1.875rem;
+  }
+
+  .multiplayer-scores__item {
+    width: 100%;
+    padding: 0.8rem 1.562rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
