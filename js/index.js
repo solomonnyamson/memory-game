@@ -13,6 +13,8 @@ const gameRestartButton = document.querySelectorAll('.restart');
 const setupNewGameButton = document.querySelectorAll('.new-game');
 const resumeGameButton = document.querySelectorAll('.resume-game');
 const mobileMenuModalWrapper = document.querySelector('.modal-menu');
+const singlePGameOverModal = document.querySelector('.sp-game-over-modal');
+const multiPGameOverModal = document.querySelector('.modal');
 
 // START A NEW GAME
 startButton.addEventListener('click', () => {
@@ -52,7 +54,11 @@ setupNewGameButton.forEach((button) => {
 // USER DEFINED  FUNCTIONS
 const displayMobileMenu = (value) => {
   if (value) mobileMenuModalWrapper.style = 'display: grid';
-  else mobileMenuModalWrapper.style = 'display: none';
+  else {
+    mobileMenuModalWrapper.style = 'display: none';
+    multiPGameOverModal.style = 'display: none';
+    singlePGameOverModal.style = 'display: none';
+  }
 };
 
 const startNewGame = (value) => {

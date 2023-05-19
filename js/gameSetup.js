@@ -309,10 +309,8 @@ const updateMultiPScoreSheet = () => {
   if (selectedConfig.player == '2') {
     playerThree.style = 'display: none';
     playerFour.style = 'display: none';
-    console.log(selectedConfig);
   } else if (selectedConfig.player == '3') {
     playerFour.style = 'display: none';
-    console.log('here', selectedConfig);
   }
 
   // UPDATE THE TEXT CONTENT TO REFLECT THE PLAYER SCORE
@@ -439,6 +437,7 @@ const stopTimeTicker = () => {
 };
 
 const restartGame = () => {
+  const playersArray = [player1, player2, player3, player4];
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
     card.classList.remove('is-flipped');
@@ -449,6 +448,10 @@ const restartGame = () => {
   player2Turn = false;
   player3Turn = false;
   player4Turn = false;
+
+  playersArray.forEach((player) => {
+    player.classList.remove('hide');
+  });
 
   playerOne.classList.remove('active');
   playerTwo.classList.remove('active');
