@@ -1,3 +1,4 @@
+// GET SELECTED CONFIGURATION FROM USER
 const theme = document.getElementsByName('theme');
 const players = document.getElementsByName('player');
 const gridSize = document.getElementsByName('size');
@@ -15,6 +16,7 @@ const getUserSelectedConfig = () => {
   }
 };
 
+// GENERATE GAME CARDS
 const generateCards = () => {
   if (selectedConfig.size == '4x4') {
     const container = document.createElement('div');
@@ -55,11 +57,13 @@ const generateCards = () => {
   }
 };
 
+// REMOVE CARDS GENERATED AFTER RESETTING GAME
 const removeCards = () => {
   const numberCards = document.querySelector('.number-card');
   numberCards.remove();
 };
 
+// GENERATE RANDOM NUMBERS TO BE USED FOR THE GAME
 const generateRandomNumbers = () => {
   const cards = document.querySelectorAll('.card');
   const cardsBack = document.querySelectorAll('.card__back-side');
@@ -80,6 +84,89 @@ const generateRandomNumbers = () => {
     cardsBack.forEach((card, index) => {
       let randomIndex = Math.floor(Math.random() * grid6x6.length);
       card.textContent = grid6x6[randomIndex];
+      cards[index].dataset.name = grid6x6[randomIndex];
+      grid6x6.splice(randomIndex, 1);
+    });
+  }
+};
+
+// GENERATE RANDOM ICONS TO BE USED FOR THE GAME
+const generateRandomIcons = () => {
+  const cards = document.querySelectorAll('.card');
+  const cardsBack = document.querySelectorAll('.card__back-side');
+  let grid4x4 = [
+    'car-side',
+    'car-side',
+    'football',
+    'football',
+    'moon',
+    'moon',
+    'star',
+    'star',
+    'snowflake',
+    'snowflake',
+    'cloud',
+    'cloud',
+    'bug',
+    'bug',
+    'heart',
+    'heart',
+  ];
+
+  let grid6x6 = [
+    'car-side',
+    'car-side',
+    'football',
+    'football',
+    'moon',
+    'moon',
+    'star',
+    'star',
+    'snowflake',
+    'snowflake',
+    'cloud',
+    'cloud',
+    'bug',
+    'bug',
+    'heart',
+    'heart',
+    'gamepad',
+    'gamepad',
+    'dollar-sign',
+    'dollar-sign',
+    'yen-sign',
+    'yen-sign',
+    'bicycle',
+    'bicycle',
+    'anchor',
+    'anchor',
+    'hashtag',
+    'hashtag',
+    'house',
+    'house',
+    'plane',
+    'plane',
+    'bell',
+    'bell',
+    'gift',
+    'gift',
+  ];
+
+  if (selectedConfig.size == '4x4') {
+    cardsBack.forEach((card, index) => {
+      let randomIndex = Math.floor(Math.random() * grid4x4.length);
+      const i = document.createElement('i');
+      i.classList.add(`fa-solid`, `fa-${grid4x4[randomIndex]}`);
+      card.appendChild(i);
+      cards[index].dataset.name = grid4x4[randomIndex];
+      grid4x4.splice(randomIndex, 1);
+    });
+  } else {
+    cardsBack.forEach((card, index) => {
+      let randomIndex = Math.floor(Math.random() * grid6x6.length);
+      const i = document.createElement('i');
+      i.classList.add(`fa-solid`, `fa-${grid6x6[randomIndex]}`);
+      card.appendChild(i);
       cards[index].dataset.name = grid6x6[randomIndex];
       grid6x6.splice(randomIndex, 1);
     });
@@ -129,6 +216,7 @@ const player2Score = document.querySelector('.score-p2');
 const player3Score = document.querySelector('.score-p3');
 const player4Score = document.querySelector('.score-p4');
 
+// DEFINE THE WHOLE GAME PROCESS
 const game = () => {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -159,9 +247,11 @@ const game = () => {
   });
 };
 
+// CHECK PAIRS WHETHER THEY MATCH AND ADD THE MATCHED CLASS
 const checkPairs = () => {
   const NumberOfCardsFlipped = document.querySelectorAll('.is-flipped').length;
   const cardsFlipped = document.querySelectorAll('.is-flipped');
+  //  NUMBERS
   if (
     selectedConfig.theme == 'numbers' &&
     NumberOfCardsFlipped === 2 &&
@@ -174,16 +264,18 @@ const checkPairs = () => {
       });
     }
 
-  // if (
-  //   gameScreen.classList.contains('icons') &&
-  //   NumberOfCardsFlipped === 2 &&
-  //   flippedCards[0].children[0].classList[1] ===
-  //     flippedCards[1].children[0].classList[1]
-  // ) {
-  //   cardsFlipped.forEach((card) => {
-  //     card.classList.add('matched');
-  //   });
-  // }
+  // ICONS
+  if (
+    selectedConfig.theme == 'icons' &&
+    NumberOfCardsFlipped === 2 &&
+    flippedCards[0].children[0].innerHTML ===
+      flippedCards[1].children[0].innerHTML
+  )
+    if (selectedConfig.theme === 'icons') {
+      cardsFlipped.forEach((card) => {
+        card.classList.add('matched');
+      });
+    }
 
   if (NumberOfCardsFlipped >= 2) {
     moves++;
@@ -197,6 +289,7 @@ const checkPairs = () => {
   }
 };
 
+// CHECK PLAYER TURN AND LOOP ACCORDINGLY
 let player1Turn = true;
 let player2Turn = false;
 let player3Turn = false;
@@ -215,6 +308,7 @@ const playerTurn = (pTurn, p1, p2, p3, p4) => {
   }
 };
 
+// CHECK NEXT PLAYER BASED ON THE FLIPPED PAIRS
 const nextPlayer = () => {
   const numberOfFlippedCards = document.querySelectorAll('.is-flipped').length;
   if (numberOfFlippedCards === 2) {
@@ -274,6 +368,7 @@ const nextPlayer = () => {
   }
 };
 
+// DEFINE LOGIC OF THE TIME TICKER
 const timeTicker = document.querySelector('.timer > .detail');
 let interval;
 let min = 0;
@@ -493,7 +588,9 @@ const resetUserSelection = () => {
 
 const newGame = () => {
   generateCards();
-  generateRandomNumbers();
+  selectedConfig.theme === 'numbers'
+    ? generateRandomNumbers()
+    : generateRandomIcons();
   generatePlayers();
   game();
   playerTurn();
