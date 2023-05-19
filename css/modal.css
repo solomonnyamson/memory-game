@@ -144,12 +144,10 @@
 }
 
 
-.new-game:hover {
+.new-game:hover, .resume-game:hover {
   background-color: var(--medium-sea-blue);
   color: var(--light-grey);
 }
-
-
 
 
 .sp-game-over-modal__moves {

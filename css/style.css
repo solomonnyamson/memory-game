@@ -129,7 +129,12 @@ body {
   color: var(--very-light-grey);
 }
 
-.menu-button:hover {
+#mobile-menu {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.menu-button:hover, #mobile-menu:hover {
   background-color: var(--light-orange);
 }
 
@@ -181,10 +186,18 @@ body {
 
 .number-card {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 4.53rem));
-  gap: 0.768rem;
   align-items: center;
   justify-content: center;
+}
+
+.number-card.c4x4 {
+grid-template-columns: repeat(4, minmax(0, 4.53rem));
+  grid-gap: 0.5rem;
+}
+
+.number-card.c4x4 .card {
+ height: 4.53rem;
+  width: 4.53rem;
 }
 
 .number-card.c6x6 {
@@ -192,11 +205,15 @@ body {
   grid-template-columns: repeat(6, minmax(0, 2.93rem));
 }
 
+.number-card.c6x6 .card {
+  height: 2.93rem;
+  width: 2.93rem;
+  font-size: 1.5rem;
+}
+
 .card {
   margin: 0;
   padding: 0;
-  height: 4.53rem;
-  width: 4.53rem;
   display: grid;
   place-items: center;
   border-radius: 3.75rem;
@@ -207,16 +224,11 @@ body {
   position: relative;
   transform-style: preserve-3d;
   transition: all 0.7s ease;
+  cursor: pointer;
 }
 
 .card:hover {
   background-color: var(--medium-sea-blue);
-}
-
-.number-card.c6x6 .card {
-  height: 2.93rem;
-  width: 2.93rem;
-  font-size: 1.5rem;
 }
 
 .card__side {
@@ -243,6 +255,8 @@ body {
   background-color: var(--medium-grey);
   pointer-events: none;
 }
+
+ /* SOLO PLAYER TIME AND SCORE TRACKER */
 
 .solo {
   display: flex;
@@ -274,6 +288,8 @@ body {
   color: #304859;
 }
 
+/* MULTI PLAYER SCORES */
+
 .multiplayer-scores {
   display: flex;
   align-items: center;
@@ -281,13 +297,9 @@ body {
 }
 
 .multiplayer-scores > * {
-  /* height: 4.375rem; */
-  /* padding: 0.625rem 0; */
-  background-color: #dfe7ec;
   display: grid;
   place-items: center;
   font-weight: bold;
-  border-radius: 0.312rem;
   flex: 1;
 }
 
@@ -315,16 +327,28 @@ body {
   display: block;
 }
 
-.player-one.active,
-.player-two.active,
-.player-three.active,
-.player-four.active {
-  background-color: var(--orange);
+.multiplayer-scores__item {
+  background-color: #dfe7ec;
+  border-radius: 0.312rem;
+  padding: .4rem 1.5rem 0;
 }
 
-.player-one.active .multiplayer-scores__item > p,
-.player-one.active .multiplayer-scores__item > div {
+.multiplayer-scores__item .mobile.title {
+  margin-bottom: 0.4rem;
+}
+
+.player-one.active .multiplayer-scores__item > *,
+.player-two.active .multiplayer-scores__item > *,
+.player-three.active .multiplayer-scores__item > *,
+.player-four.active .multiplayer-scores__item > * {
   color: var(--very-light-grey);
+}
+
+.player-one.active .multiplayer-scores__item,
+.player-two.active .multiplayer-scores__item,
+.player-three.active .multiplayer-scores__item,
+.player-four.active .multiplayer-scores__item {
+  background-color: var(--orange);
 }
 
 .player-one.active::before,
@@ -336,7 +360,7 @@ body {
   height: 1.6rem;
   clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
   background: var(--orange);
-  margin-top: -2.5rem;
+  margin-top: -1.6rem;
 }
 
 /* RESPONSIVE DESIGN - TABLET VIEW */
@@ -377,10 +401,12 @@ body {
   }
 
   /* GAME CARDS */
-  .number-card {
-    grid-gap: 1rem;
+  .number-card.c4x4 {
+  grid-template-columns: repeat(4, minmax(0, 5.125rem));
+  grid-gap: .6rem;
   }
-  .card {
+
+   .number-card.c4x4 .card {
     height: 5.125rem;
     width: 5.125rem;
     font-size: 2.75rem;
@@ -388,6 +414,7 @@ body {
 
   .number-card.c6x6 {
     grid-template-columns: repeat(6, minmax(0, 4rem));
+    grid-gap: .6rem;
   }
 
   .number-card.c6x6 .card {
@@ -408,12 +435,35 @@ body {
     padding-left: 1rem;
   }
 
+  .player-one.active::before,
+  .player-two.active::before,
+  .player-three.active::before,
+  .player-four.active::before {
+    margin-bottom: -0.2rem;
+  }
+
   .mobile.title {
     display: none;
   }
 
   .desktop.title {
     display: block;
+  }
+
+    /* SOLO PLAYER TIME AND SCORE TRACKER */
+    .footer {
+      padding: 0 7.375rem;
+    }
+
+     .solo {
+    justify-content: center;
+  }
+
+  .timer, .moves {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 }
 
@@ -425,7 +475,7 @@ body {
   }
 
   .game-start {
-    padding: 0rem 10.25rem 0rem 10.25rem;
+    padding: 2rem 10.25rem .8rem 10.25rem;
   }
 
   /* MULTI PLAYER SCORES */
@@ -434,7 +484,27 @@ body {
   .player-two.active::before,
   .player-three.active::before,
   .player-four.active::before {
-    margin-top: -1.5rem;
+    margin-bottom: 0;
+  }
+
+  .player-one::after,
+  .player-two::after,
+  .player-three::after,
+  .player-four::after {
+    content: 'CURRENT TURN';
+    margin-top: 0.6rem;
+    font-size: 0.81rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    opacity: 0;
+    letter-spacing: .31rem;
+  }
+
+  .player-one.active::after,
+  .player-two.active::after,
+  .player-three.active::after,
+  .player-four.active::after {
+    opacity: 1;
   }
 
   .multiplayer-scores {
@@ -448,4 +518,24 @@ body {
     align-items: center;
     justify-content: space-between;
   }
+
+
+  /* SOLO PLAYER TIME AND SCORE TRACKER */
+    .footer {
+      padding: 0 18.75rem;
+    }
+
+     .solo {
+    justify-content: center;
+  }
+
+  .timer, .moves {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+ 
+
 }
